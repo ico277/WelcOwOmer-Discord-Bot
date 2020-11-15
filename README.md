@@ -1,4 +1,5 @@
 # WelcOwOmer-Discord-Bot #
+A W.I.P Welcomer Discord Bot
 
 ## Commands ##
 
