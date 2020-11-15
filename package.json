@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "scripts": {
     "tsc": "tsc",
-    "start": "cd ./src/ && tsc && cd ../build/ && node ."
+    "start": "tsc && cd ./build/ && node ."
   },
   "author": "ico277",
   "license": "MIT",
