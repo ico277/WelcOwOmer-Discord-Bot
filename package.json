@@ -1,14 +1,14 @@
 {
   "name": "welcowomer-bot",
   "version": "1.1.0",
-  "description": "a discord bot",
+  "description": "a welcomer discord bot",
   "main": "./build/index.js",
   "scripts": {
     "tsc": "tsc",
     "start": "cd ./src/ && tsc && cd ../build/ && node ."
   },
   "author": "ico277",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/node": "^14.14.7",
     "discord.js": "^12.4.1",
