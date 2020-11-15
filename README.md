@@ -12,3 +12,6 @@ Note: This commmand is still W.I.P!
 
 ### help ###
 The help menu.
+
+
+__Join my discord server [![Discord](https://i.imgur.com/8yZBebP.png)](https://discord.gg/uyUUSgRhPE)__
