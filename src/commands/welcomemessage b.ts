@@ -1,4 +1,4 @@
-import { DiscordAPIError, Message } from "discord.js";
+import { Message } from "discord.js";
 import * as db from "quick.db"
 
 module.exports.runCmd = async function(msg:Message, args:String[], DBs:Map<string, db.table>) {
@@ -14,6 +14,8 @@ module.exports.runCmd = async function(msg:Message, args:String[], DBs:Map<strin
 }
 
 module.exports.help = {
-    name: "Welcome Message"
-    //TODO add help object and command
+    name: " ",
+    usage: "wl!",
+    desc: " ",
+    note: null
 }
