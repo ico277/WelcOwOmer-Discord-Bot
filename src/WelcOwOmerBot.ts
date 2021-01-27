@@ -2,7 +2,7 @@ import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
 
-const setEmbeddedMessageColor = (color: string, embeddedMessage) => {
+const setEmbeddedMessageColor = (color: string, embeddedMessage: discord.MessageEmbed) => {
     if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
