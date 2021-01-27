@@ -1,6 +1,14 @@
 import * as discord from "discord.js";
 import * as fs from "fs";
-import * as db from "quick.db"
+import * as db from "quick.db";
+
+const setEmbeddedMessageColor = (color: string, embeddedMessage) => {
+    if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
+    else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
+    else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
+    else if (color === "light blue") { embeddedMessage.setColor(0x99CFE0); }
+    else { embeddedMessage.setColor(0xFFC0CB); }
+};
 
 export class WelcOwOmerBot {
     public client:discord.Client;
@@ -54,28 +62,7 @@ export class WelcOwOmerBot {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User joined!")
                         .setAuthor(member.user.tag, member.user.displayAvatarURL());
-                    switch (GuildData.welcome.color) {
-                        case "pink": {
-                            embed.setColor(0xFFC0CB)
-                            break;
-                        }
-                        case "red": {
-                            embed.setColor(0xFF0000)
-                            break;
-                        }
-                        case "blue": {
-                            embed.setColor(0x0000FF)
-                            break;
-                        }
-                        case "light blue": {
-                            embed.setColor(0x99CFE0)
-                            break;
-                        }
-                        default: {
-                            embed.setColor(0xFFC0CB)
-                            break;
-                        }
-                    }
+                    setEmbeddedMessageColor(GuildData.welcome.color, embed);
                     if (GuildData.welcome.message) {
                         embed.setDescription(
                             GuildData.welcome.message
@@ -109,28 +96,7 @@ export class WelcOwOmerBot {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User left!")
                         .setAuthor(member.user.tag, member.user.displayAvatarURL());
-                    switch (GuildData.bye.color) {
-                        case "pink": {
-                            embed.setColor(0xFFC0CB)
-                            break;
-                        }
-                        case "red": {
-                            embed.setColor(0xFF0000)
-                            break;
-                        }
-                        case "blue": {
-                            embed.setColor(0x0000FF)
-                            break;
-                        }
-                        case "light blue": {
-                            embed.setColor(0x99CFE0)
-                            break;
-                        }
-                        default: {
-                            embed.setColor(0xFFC0CB)
-                            break;
-                        }
-                    }
+                    setEmbeddedMessageColor(GuildData.bye.color, embed);
                     if (GuildData.bye.message) {
                         embed.setDescription(
                             GuildData.bye.message
