@@ -1,6 +1,7 @@
 import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
+import { BOT_PREFIX } from "./constants";
 
 function setEmbeddedMessageColor (color: string, embeddedMessage: discord.MessageEmbed) {
     if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
@@ -11,24 +12,23 @@ function setEmbeddedMessageColor (color: string, embeddedMessage: discord.Messag
 };
 
 export class WelcOwOmerBot {
-    public client:discord.Client;
-    public PREFIX:string = "wl!";
-    public DataBases:Map<string, db.table> = new Map<string, db.table>();
+    public client: discord.Client;
+    public databases: Map<string, db.table> = new Map<string, db.table>();
 
     constructor(token:string) {
         this.client = new discord.Client({disableMentions: "everyone"});
-        this.DataBases.set("GuildsDb", new db.table("guilds"));
+        this.databases.set("GuildsDb", new db.table("guilds"));
 
         this.client.on("ready", () => {
             console.log(`Logged in as ${this.client.user.tag}\nowo`);
         })
         
         this.client.on("message", async (msg:discord.Message) => {
-            if (msg.author.bot || !msg.content.startsWith(this.PREFIX)) {
+            if (msg.author.bot || !msg.content.startsWith(BOT_PREFIX)) {
                 return;
             }
             let args = msg.content.split(" ");
-            let cmd = args[0].substr(this.PREFIX.length);
+            let cmd = args[0].substr(BOT_PREFIX.length);
             args.shift();
         
             var path = `./commands/${cmd}.js`.toLowerCase();
@@ -36,7 +36,7 @@ export class WelcOwOmerBot {
                 var run = await require(path);
                 if (run != null || run != undefined) {
                     try {
-                        run.runCmd(msg, args, this.DataBases);
+                        run.runCmd(msg, args, this.databases);
                     } catch (ex) {
                         msg.channel.send(`There was an unexpected error!`);
                         console.error(ex);
@@ -55,7 +55,7 @@ export class WelcOwOmerBot {
                 return;
             }
             let guild = member.guild;
-            let GuildData = await (this.DataBases.get("GuildsDb")).get(guild.id);
+            let GuildData = await (this.databases.get("GuildsDb")).get(guild.id);
             if (GuildData) {
                 if (GuildData != null || GuildData != undefined && GuildData.welcome.enabled) {
                     let embed = new discord.MessageEmbed()
@@ -92,7 +92,7 @@ export class WelcOwOmerBot {
                 return;
             }
             let guild = member.guild;
-            let GuildData = await (this.DataBases.get("GuildsDb")).get(guild.id);
+            let GuildData = await (this.databases.get("GuildsDb")).get(guild.id);
             if (GuildData) {
                 if (GuildData != null || GuildData != undefined && GuildData.bye.enabled) {
                     let embed = new discord.MessageEmbed()

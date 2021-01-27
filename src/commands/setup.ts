@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import * as db from "quick.db"
+import { BOT_PREFIX } from "../constants";
 
 module.exports.runCmd = async function(msg:Message, args:String[], DBs:Map<string, db.table>) {
     var GuildsDb = DBs.get("GuildsDb");
@@ -41,7 +42,7 @@ module.exports.runCmd = async function(msg:Message, args:String[], DBs:Map<strin
 
 module.exports.help = {
     name: "setup",
-    usage: "wl!setup",
+    usage: `${BOT_PREFIX}setup`,
     desc: "This command sets the server up for the welcome-ing",
     note: "W.I.P command"
 }

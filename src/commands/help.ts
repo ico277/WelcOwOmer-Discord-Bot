@@ -1,5 +1,6 @@
 import { Message, MessageEmbed } from "discord.js";
 import * as fs from "fs";
+import { BOT_PREFIX } from "../constants";
 
 module.exports.runCmd = async function(msg:Message, args:string[]) {
     if (args.length > 0) {
@@ -41,7 +42,7 @@ module.exports.runCmd = async function(msg:Message, args:string[]) {
 
 module.exports.help = {
     name: "help",
-    usage: "wl!help [command]",
+    usage: `${BOT_PREFIX}help [command]`,
     desc: "It shows this help menu",
     note: null
 }
