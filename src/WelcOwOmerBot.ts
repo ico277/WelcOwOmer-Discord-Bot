@@ -2,12 +2,12 @@ import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
 
-const setEmbeddedMessageColor = (color, embeddedMessage) => {
+const setEmbeddedMessageColor = (color: string, embeddedMessage) => {
     if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
     else if (color === "light blue") { embeddedMessage.setColor(0x99CFE0); }
-    else { embeddedMessage.seColor(0xFFC0CB); }
+    else { embeddedMessage.setColor(0xFFC0CB); }
 };
 
 export class WelcOwOmerBot {
