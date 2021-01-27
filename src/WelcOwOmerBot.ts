@@ -2,7 +2,7 @@ import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
 
-const setColors = (color, embeddedMessage) => {
+const setEmbeddedMessageColor = (color, embeddedMessage) => {
     if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
@@ -62,7 +62,7 @@ export class WelcOwOmerBot {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User joined!")
                         .setAuthor(member.user.tag, member.user.displayAvatarURL());
-                    setColors(GuildData.welcome.color, embed);
+                    setEmbeddedMessageColor(GuildData.welcome.color, embed);
                     if (GuildData.welcome.message) {
                         embed.setDescription(
                             GuildData.welcome.message
@@ -96,7 +96,7 @@ export class WelcOwOmerBot {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User left!")
                         .setAuthor(member.user.tag, member.user.displayAvatarURL());
-                    setColors(GuildData.bye.color, embed);
+                    setEmbeddedMessageColor(GuildData.bye.color, embed);
                     if (GuildData.bye.message) {
                         embed.setDescription(
                             GuildData.bye.message
