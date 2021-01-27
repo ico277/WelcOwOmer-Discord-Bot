@@ -2,7 +2,7 @@ import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
 
-const setEmbeddedMessageColor = (color: string, embeddedMessage: discord.MessageEmbed) => {
+function setEmbeddedMessageColor (color: string, embeddedMessage: discord.MessageEmbed) {
     if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
     else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
@@ -55,13 +55,16 @@ export class WelcOwOmerBot {
                 return;
             }
             let guild = member.guild;
-            //var path = `./guilds/${guild.id}.json`.toLowerCase();
             let GuildData = await (this.DataBases.get("GuildsDb")).get(guild.id);
             if (GuildData) {
                 if (GuildData != null || GuildData != undefined && GuildData.welcome.enabled) {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User joined!")
-                        .setAuthor(member.user.tag, member.user.displayAvatarURL());
+                        .setAuthor(member.user.tag, member.user.displayAvatarURL())
+                        .setFooter(
+                            `account created ${((Date.now() - member.user.createdTimestamp)/1000/60/60/24).toFixed(2)} days ago ` +
+                            `(${((Date.now() - member.user.createdTimestamp)/1000/60/60).toFixed(2)} hours ago)`
+                            );
                     setEmbeddedMessageColor(GuildData.welcome.color, embed);
                     if (GuildData.welcome.message) {
                         embed.setDescription(
@@ -89,7 +92,6 @@ export class WelcOwOmerBot {
                 return;
             }
             let guild = member.guild;
-            //var path = `./guilds/${guild.id}.json`.toLowerCase();
             let GuildData = await (this.DataBases.get("GuildsDb")).get(guild.id);
             if (GuildData) {
                 if (GuildData != null || GuildData != undefined && GuildData.bye.enabled) {
