@@ -1,6 +1,6 @@
 import { Message, MessageEmbed } from "discord.js";
 import * as fs from "fs";
-import { BOT_PREFIX } from "../constants";
+import { BOT_PREFIX, COLOR } from "../constants";
 
 module.exports.runCmd = async function(msg:Message, args:string[]) {
     if (args.length > 0) {
@@ -13,7 +13,7 @@ module.exports.runCmd = async function(msg:Message, args:string[]) {
                     .setTitle(`${CmdHelp.name} help menu`)
                     .addField("Usage", CmdHelp.usage)
                     .addField("Description", CmdHelp.desc)
-                    .setColor(0x0066FF);
+                    .setColor(COLOR["hot blue"]);
                 if (CmdHelp.note) {
                     embed.addField("Note", CmdHelp.note);
                 }
@@ -35,7 +35,7 @@ module.exports.runCmd = async function(msg:Message, args:string[]) {
             .addField("All commands", cmds)
             .addField("Note", `For for information about a command do ${BOT_PREFIX}help [command name]`)
             .setFooter("<arg> means required argument\n[arg] means optional argument")
-            .setColor(0x0066FF);
+            .setColor(COLOR["hot blue"]);
         msg.channel.send(embed);
     }
 }
