@@ -27,7 +27,7 @@ module.exports.runCmd = async function(msg:Message, args:string[]) {
     } else {
 
         const cmds: string = fs.readdirSync("./commands").map(cmd => {
-            cmd.split(".")[0];
+            return cmd.split(".")[0];
         }).sort().join(", ");
 
         let embed = new MessageEmbed()
