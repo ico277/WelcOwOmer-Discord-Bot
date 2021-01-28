@@ -1,14 +1,11 @@
 import * as discord from "discord.js";
 import * as fs from "fs";
 import * as db from "quick.db";
-import { BOT_PREFIX } from "./constants";
+import { BOT_PREFIX, COLOR } from "./constants";
 
-function setEmbeddedMessageColor (color: string, embeddedMessage: discord.MessageEmbed) {
-    if (color === "pink") { embeddedMessage.setColor(0xFFC0CB); }
-    else if (color === "red") { embeddedMessage.setColor(0xFFC0CB); }
-    else if (color === "blue") { embeddedMessage.setColor(0x0000FF); }
-    else if (color === "light blue") { embeddedMessage.setColor(0x99CFE0); }
-    else { embeddedMessage.setColor(0xFFC0CB); }
+function setMessageEmbedColor (message: discord.MessageEmbed, color: string) {
+    if (COLOR.hasOwnProperty(color)) { message.setColor(COLOR[color]); }
+    else { message.setColor(COLOR["pink"]); }
 };
 
 export class WelcOwOmerBot {
@@ -65,7 +62,7 @@ export class WelcOwOmerBot {
                             `account created ${((Date.now() - member.user.createdTimestamp)/1000/60/60/24).toFixed(2)} days ago ` +
                             `(${((Date.now() - member.user.createdTimestamp)/1000/60/60).toFixed(2)} hours ago)`
                             );
-                    setEmbeddedMessageColor(GuildData.welcome.color, embed);
+                    setMessageEmbedColor(embed, GuildData.welcome.color);
                     if (GuildData.welcome.message) {
                         embed.setDescription(
                             GuildData.welcome.message
@@ -98,7 +95,7 @@ export class WelcOwOmerBot {
                     let embed = new discord.MessageEmbed()
                         .setTitle("User left!")
                         .setAuthor(member.user.tag, member.user.displayAvatarURL());
-                    setEmbeddedMessageColor(GuildData.bye.color, embed);
+                    setMessageEmbedColor(embed, GuildData.bye.color);
                     if (GuildData.bye.message) {
                         embed.setDescription(
                             GuildData.bye.message
