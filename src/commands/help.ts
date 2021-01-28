@@ -25,15 +25,15 @@ module.exports.runCmd = async function(msg:Message, args:string[]) {
             msg.channel.send(`Could not find command "${cmd}"!`);
         }
     } else {
-        let cmds:string[] = [];
-        fs.readdirSync("./commands").forEach(a => {
-            cmds.push(a.split(".")[0]);
-        })
-        cmds.sort();
+
+        const cmds: string = fs.readdirSync("./commands").map(cmd => {
+            cmd.split(".")[0];
+        }).sort().join(", ");
+
         let embed = new MessageEmbed()
             .setTitle("Help menu")
-            .addField("All commands", cmds.join(", "))
-            .addField("Note", "For for information about a command do wl!help [command name]")
+            .addField("All commands", cmds)
+            .addField("Note", `For for information about a command do ${BOT_PREFIX}help [command name]`)
             .setFooter("<arg> means required argument\n[arg] means optional argument")
             .setColor(0x0066FF);
         msg.channel.send(embed);
